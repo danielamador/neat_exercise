@@ -31,3 +31,7 @@ class TestClass(unittest.TestCase):
         b = ""
 
         assert report_params.gen_params(a, b) == ["dog", "catfish", "frog", "fish", "apple", "monkey", "fox"]
+
+    def test_letter_variations(self):
+        a = "Redenção, Tromsø, ÂÊÎÔÛ, cow, FISH, Ajqk,               2342304892034, measure"
+        b = "TROMSØ, COW, BAnaNA, RedENÇão, âêîôû"

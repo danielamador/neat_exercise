@@ -3,7 +3,7 @@ import re
 
 
 def _process_inputs(input_string):
-    result_string = re.sub("[^A-Za-z]+", " ", input_string)
+    result_string = re.sub("[^A-Za-zÀ-ȕ]+", " ", input_string)
     result_string = result_string.lower()
     result_list   = result_string.split()
     return result_list
@@ -23,8 +23,7 @@ def gen_params(a, b) -> List[str]:
     merged_list = input_list_a + input_list_b
     return _elimin_dupli(merged_list)
 
+a = "Redenção, Tromsø, ÂÊÎÔÛ, cow, FISH, Ajqk,               2342304892034, measure"
+b = "TROMSØ, COW, RedENÇão, âêîôû"
 
-par_1 = "Dog,caTfish,Frog,FIsh,apple  ,    Monkey,appLe,fox"
-par_2 = "Frog  apple    fox cat fish fish"
-
-print(gen_params(par_1, par_2))
+print(gen_params(a, b))
