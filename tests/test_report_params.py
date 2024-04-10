@@ -46,12 +46,24 @@ class TestClass(unittest.TestCase):
 
 
     def test_delimiters(self):
-        a = 'A B-C,D.E\\F@ G|H I J K'
-        b = 'A B C D E  F  G H!I#J*K'
-        assert generate(a, b) == ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k']
+        a = 'A B-C,D.E\\F@ G|H I J K£$%^&*()L'
+        b = 'A B C D E  F  G H!I#J*K........L'
+        assert generate(a, b) == ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l']
 
 
     def test_multiple_duplication(self):
         a = 'banana banana banana banana banana banana banana banana banana banana banana banana banana '
         b = 'banana banana banana banana banana banana banana banana banana banana banana banana banana '
         assert generate(a, b) == ['banana']
+
+
+    def test_alternated_duplication(self):
+        a = 'banana ananas banana ananas banana ananas banana ananas banana ananas banana ananas banana '
+        b = 'ananas banana ananas banana ananas banana ananas banana ananas banana ananas banana ananas '
+        assert generate(a, b) == ['banana', 'ananas']
+
+
+    def test_needle_in_a_haystack(self):
+        a = 'banana PEAR Strawberry pea Raspberry GRAPE melon Mango, waterMelon, jackfruit, lemon, lime'
+        b = 'coco Orange PEA tangerine, mandarines, EggPlant, cinnamon, avocado, blueberry, apple, PER, passIon'
+        assert generate(a, b) == ['pea']

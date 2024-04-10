@@ -24,10 +24,10 @@ def _find_common(list_a, list_b) -> List[str]:
     return new_list
 
 
-def gen_params(input_list_a, input_list_b) -> List[str]:
-    res_list_a = _process_inputs(input_list_a)
+def gen_params(input_str_a, input_str_b) -> List[str]:
+    res_list_a = _process_inputs(input_str_a)
     res_list_a = _elimin_dupli(res_list_a)
-    res_list_b = _process_inputs(input_list_b)
+    res_list_b = _process_inputs(input_str_b)
     res_list_b = _elimin_dupli(res_list_b)
     return _find_common(res_list_a, res_list_b)
 
