@@ -1,11 +1,11 @@
-import unittest
+import pytest
 from reportinput import report_params
 
 
 generate = report_params.gen_params
 
 
-class TestClass(unittest.TestCase):
+class TestClass():
     def test_suggested_example(self):
         a = 'Dog,caTfish,Frog,FIsh,apple  ,    Monkey,appLe,fox'
         b = 'Frog  apple    fox cat fish fish'
@@ -67,3 +67,13 @@ class TestClass(unittest.TestCase):
         a = 'banana PEAR Strawberry pea Raspberry GRAPE melon Mango, waterMelon, jackfruit, lemon, lime'
         b = 'coco Orange PEA tangerine, mandarines, EggPlant, cinnamon, avocado, blueberry, apple, PER, passIon'
         assert generate(a, b) == ['pea']
+
+    
+    def test_non_supported_types(self):
+        with pytest.raises(TypeError):
+            generate([], "")
+            generate("", [])
+            generate([], [])
+            generate(1, "")
+            generate("", None)
+            generate(object, "")
