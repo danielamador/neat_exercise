@@ -70,10 +70,11 @@ class TestClass():
 
     
     def test_non_supported_types(self):
-        with pytest.raises(TypeError):
+        with pytest.raises(TypeError) as excinfo:
             generate([], "")
             generate("", [])
             generate([], [])
             generate(1, "")
             generate("", None)
             generate(object, "")
+            assert excinfo.type is TypeError
